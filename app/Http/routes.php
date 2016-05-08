@@ -14,12 +14,10 @@
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-    $api->get('/', 'App\Http\Controllers\ExampleController@index');
-
+    $api->get('/', ['middleware' =>'api.throttle', 'limit' => 10, 'expires' => 2, 'uses' =>'App\Http\Controllers\ExampleController@index']);
     $api->post('/todo', ['middleware' => 'validator.todo', 'uses' => 'App\Http\Controllers\TodoController@store']);
     $api->get('/todo', 'App\Http\Controllers\TodoController@index');
-    $api->get('/todo/{id}', 'App\Http\Controllers\TodoController@show');    
+    $api->get('/todo/{id}', 'App\Http\Controllers\TodoController@show');
     $api->delete('/todo/{id}', 'App\Http\Controllers\TodoController@destroy');
     $api->patch('/todo/{id}', ['middleware' => 'validator.todo', 'uses' => 'App\Http\Controllers\TodoController@update']);
 });
-
