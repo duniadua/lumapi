@@ -25,7 +25,7 @@ class TodoController extends Controller {
                 'status_code' => 200,
                 'result' => $this->todos->getAll(),
             ];
-        
+
         return $this->response->array($data)->setStatusCode(200);
     }
 
@@ -41,16 +41,16 @@ class TodoController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Dingo\Api\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
         try {
             $data = [
                 'message' => 'Insert Record Success',
-                'status_code' => 201,                
+                'status_code' => 201,
             ];
-            
+
             if ($this->todos->insert($request)):
                 return $this->response->array($data)->setStatusCode(201);
             endif;
@@ -71,7 +71,7 @@ class TodoController extends Controller {
                 'message' => 'Show Result Success',
                 'status_code' => 200,
                 'result' => $this->todos->findByID($id),
-            ];                        
+            ];
 
             return $this->response->array([$data])->setStatusCode(200);
         } catch (Exception $exc) {
@@ -123,7 +123,7 @@ class TodoController extends Controller {
                 'message' => 'Delete Resource '.$id.' Was Success',
                 'status_code' => 200,
             ];
-            
+
             if ($this->todos->deleteID($id)):
                 return $this->response->array($data)->setStatusCode(200);
             endif;

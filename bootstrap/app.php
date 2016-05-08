@@ -60,7 +60,7 @@ $app->singleton(
 // $app->middleware([
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
-// 
+//
 
  $app->routeMiddleware([
      'validator.todo' => App\Http\Middleware\ValidatorTodoMiddleware::class,
@@ -77,6 +77,7 @@ $app->singleton(
   |
  */
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
